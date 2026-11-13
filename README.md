@@ -107,6 +107,9 @@ $ ./bin/chewkeanho-netcontrol bootstrap [PROFILE_NAME] [IP_ADDRESS]
 Debug the settings here until you get reliable results. This is for future
 restoration in case of the node's hardware failure.
 
+<video loop width='100%' controls src='/chewkeanho/software-netcontrol/releases/download/Stores/chewkeanho-netcontrol-bootstrap.mp4' type='video/mp4'></video>
+**Video Demo (Bootstrap)**: [YouTube](https://www.youtube.com/watch?v=FB4dXyCcMc4)
+
 
 
 ### Reliably Install Packages
@@ -124,6 +127,12 @@ To check out what is supported, use the following commands:
 $ ./bin/chewkeanho-netcontrol help package              # list
 $ ./bin/chewkeanho-netcontrol help package [PACKAGE]    # specific package
 ```
+
+<video loop width='100%' controls src='/chewkeanho/software-netcontrol/releases/download/Stores/chewkeanho-netcontrol-add-package.mp4' type='video/mp4'></video>
+**Video Demo (Add Package)**: [YouTube](https://www.youtube.com/watch?v=PiNIJcp-b3k)
+
+<video loop width='100%' controls src='/chewkeanho/software-netcontrol/releases/download/Stores/chewkeanho-netcontrol-remove-package.mp4' type='video/mp4'></video>
+**Video Demo (Remove Package)**: [YouTube](https://www.youtube.com/watch?v=nBZslMaWFg0)
 
 
 
@@ -152,6 +161,12 @@ In its encrypted locked form, you can save the encrypted archive (e.g.
 `myorg-network.tar.xz.enc`) into your secure password manager like
 [KeePassXC](https://keepassxc.org/).
 
+<video loop width='100%' controls src='/chewkeanho/software-netcontrol/releases/download/Stores/chewkeanho-netcontrol-lock.mp4' type='video/mp4'></video>
+**Video Demo (Lock)**: [YouTube](https://www.youtube.com/watch?v=Je93v2-4yJE)
+
+<video loop width='100%' controls src='/chewkeanho/software-netcontrol/releases/download/Stores/chewkeanho-netcontrol-unlock.mp4' type='video/mp4'></video>
+**Video Demo (Unlock)**: [YouTube](https://www.youtube.com/watch?v=Q5obW4VA8rc)
+
 
 
 ### Update The Repository
@@ -171,6 +186,9 @@ Simple! Use the following command and follow the breadcrumb:
 ```
 $ ./bin/chewkeanho-netcontrol help
 ```
+
+<video loop width='100%' controls src='/chewkeanho/software-netcontrol/releases/download/Stores/chewkeanho-netcontrol-help.mp4' type='video/mp4'></video>
+**Video Demo (Help)**: [YouTube](https://www.youtube.com/watch?v=z1Fc_Vtw00Y)
 
 
 
