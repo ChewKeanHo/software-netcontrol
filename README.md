@@ -344,6 +344,7 @@ Packaged-By: (Holloway) Chew, Kean Ho
 Contact: hello@chewkeanho.com
 SKU: chewkeanho-software-netcontrol
 UUID: EDBC3094-7C57-4B71-96F6-AC3F818BB819
+DOI: 10.5281/zenodo.24191019
 License: BSD 3-Clause "New" or "Revised" License (https://opensource.org/license/BSD-3-clause)
 Repository Made On: 2026-10-05
 Repository Made From: Malaysia, South East Asia
