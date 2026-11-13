@@ -53,15 +53,16 @@ Below are the references used in this project repository:
 9. OPENWRT; 2026; "Firewall Configuration /etc/config/firewall"; *User Guide*;
    OpenWRT.org; World Wide Web; Viewed on: 2026-10-16; Available at:
    World Wide Web; Viewed on: 2026-10-16; Available at:
+   https://openwrt.org/docs/guide-user/firewall/firewall_configuration
 10. OPENWRT; 2026; "Stubby"; OpenWRT.org; *User Guide*; World Wide Web;
     Viewed on: 2026-10-16; Available at:
-    https://openwrt.org/docs/guide-user/firewall/firewall_configuration
+    https://openwrt.org/docs/guide-user/services/dns/stubby
 11. OPENWRT; 2026; "Dnsmasq DHCP Server"; *User Guide*; OpenWRT.org;
     World Wide Web; Viewed on: 2026-10-16; Available at:
     https://openwrt.org/docs/guide-user/base-system/dhcp.dnsmasq
 12. OPENWRT; 2026; "System configuration /etc/config/system"; *User Guide*;
     OpenWRT.org; World Wide Web; Viewed on: 2026-10-16; Available at:
-    World Wide Web; Viewed on: 2026-10-16; Available at:
+    https://openwrt.org/docs/guide-user/base-system/system_configuration
 13. OPENWRT; 2026; "uHTTPd Web Server Configuration"; *User Guide*; OpenWRT.org;
     World Wide Web; Viewed on: 2026-10-16; Available at:
     https://openwrt.org/docs/guide-user/services/webserver/uhttpd
