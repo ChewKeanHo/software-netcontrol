@@ -4,6 +4,9 @@
 #   1. To make exception, prefix with '!' (means 'not to include') rather than #
 #      modify the standardized list                                            #
 ################################################################################
+# contain sensitive information for the entire organizational network
+# configurations. Therefore, we ignore it entirely for local operation.
+etc/*
 
 
 

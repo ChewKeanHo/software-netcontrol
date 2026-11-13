@@ -1,0 +1,115 @@
+# Copyright 2026 The (Holloway) Chew, Kean Ho's NetControl Project Team (https://github.com/ChewKeanHo/software-netcontrol)
+#
+# The above unified aliases have one or more actual legal entities listed
+# outside of this document: (1) 'CREATORS.txt' or 'AUTHORS.txt'; and (2)
+# 'CONTRIBUTORS.txt'. They are usually placed next to this document in their
+# respective project repository. Please refer to them for compiling the complete
+# list accordingly.
+#
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+# list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation
+# and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors
+# may be used to endorse or promote products derived from this software without
+# specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+_________________________________________________________________________
+
+CRYPTOGRAPHY POLICIES
+---------------------
+Below are the cryptography policies used in this application:
+
+(1) Dependencies
+	* OpenSSL (`openssl`)
+	* Tarball (`tar`)
+	* XZ Compressor (`xz`)
+	* Gunzip Compressor (`gunzip`)
+(2) Method
+	* Encryption-then-MAC (EtM)
+		* ARGON2ID + CHACHA20 <-> HMAC-SHA256
+(3) Password
+	* ARGON2ID
+		* Minimum characters: 32
+		* Must have at least one(1) 'A-Z'
+		* Must have at least one(1) 'a-z'
+		* Must have at least one(1) '0-9'
+		* Must have at least one(1) '#$%&@^`~\\/\|_-'
+		* 'Salt':
+			* minimum length: '32'
+			* default length: '32'
+			* length nature: even number (dividable by 2)
+		* 'Hash Iteration':
+			* minimum: '2' (OWASP)
+			* default: '3'
+		* 'Memory Size' in kB:
+			* minimum: '19456' (19 * 1024) (OWASP)
+			* default: '26624' (26 * 1024)
+		* 'Parallelism':
+			* minimum: '1' (OWASP)
+			* default: '1'
+(4) Encryption:
+	* CHACHA20
+(5) MAC:
+	* HMAC-SHA256 (default)
+		* using SHA-256 algorithm.
+	* HMAC-SHA512
+		* using SHA-512 algorithm
+	* HMAC-SHA512-256
+		* using SHA-512-256 algorith,
+(6) SHASUM:
+	* SHA256 (default)
+	* SHA512
+	* SHA512-256
+(7) Archive:
+	* tar
+(8) Compression:
+	* xz
+	* gzip
+(9) Encapsulation:
+	*	Format:
+			-----BEGIN PRIVATE PAYLOAD SIGNATURE-----\n
+			Method: <HMAC type>\n
+			\n
+			\n
+			<HMAC digest>\n
+			-----END PRIVATE PAYLOAD SIGNATURE-----\n
+			-----BEGIN PRIVATE PAYLOAD-----\n
+			Method: <ID>\n
+			Encryption: <ID>\n
+			Salt: <hex>\n
+			Iteration: <number>\n
+			Memory-Size: <number>\n
+			Parallelism: <number>\n
+			...
+			\n
+			\n
+			<base64 ciphertext>\n
+			-----END PRIVATE PAYLOAD-----\n
+	*	Format is **ALWAYS** favor decryption needs.
+	*	All data **MUST** be Base64 encoded when needed.
+	*	`HMAC digest` **MUST** be UPPERCASE with colon separator
+		(e.g. `AA:BB:CC:...`).
+	*	`SIGNATURE` section is optional. Should it be available,
+		it **MUST** be the first section.
+	*	Standards are based on OpenPGP ASCII Armor (RFC 4880 §6) wearing
+		PEM's delimiters.
+_________________________________________________________________________

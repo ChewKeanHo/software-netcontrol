@@ -1,0 +1,92 @@
+# Copyright 2026 The (Holloway) Chew, Kean Ho's NetControl Project Team (https://github.com/ChewKeanHo/software-netcontrol)
+#
+# The above unified aliases have one or more actual legal entities listed
+# outside of this document: (1) 'CREATORS.txt' or 'AUTHORS.txt'; and (2)
+# 'CONTRIBUTORS.txt'. They are usually placed next to this document in their
+# respective project repository. Please refer to them for compiling the complete
+# list accordingly.
+#
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+# list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation
+# and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors
+# may be used to endorse or promote products derived from this software without
+# specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+_________________________________________________________________________
+
+ $ chewkeanho-netcontrol lock [FILENAME]
+_________________________________________________________________________
+
+LOCK COMMAND
+
+This command locks the 'etc/' configuration directory into an encrypted
+archived file for safe storage and data at rest.
+
+It prioritizes full safety-check at each step ensuring the locked encrypted
+file is guarenteed unlockable.
+
+The '[FILENAME]' **MUST NOT** have any file extension. Example:
+	* 'network-data' -> 'network-data.tar.xz.enc'
+
+
+
+
+WHEN TO USE
+
+**ALWAYS** keep your enterprise network configuration directory in lock-mode
+after use. A network is the nerve system of the enterprise. Therefore, always
+keep it safe.
+
+
+
+
+LOCKING PIPELINES
+
+This command uses known and common technologies to lock the directory:
+
+(1)	Archive the entire directory into a `tar` archive file with `tar`
+	program.
+(2)	Verify and test the `tar`-archived file.
+(3)	Compress the `tar`-archived file with `xz` program.
+(4)	Verify and test the `xz`-compressed file.
+(5)	Remove the no longer needed `tar`-archived file.
+(6)	Request passphrase from user with **STRICT** policy (refer next
+	section).
+(7)	Encrypt the `xz`-compressed file with `openssl` program.
+(8)	Obtain shasum of the `xz`-compressed file with `openssl` program.
+(9)	Mock decrypt a copy of the encrypted file with `openssl` program.
+(10)	Obtain shasum of the decrypted `xz`-compressed file with `openssl`
+	program.
+(11)	Compare both shasum to be identical.
+(12)	Clean up all artifacts.
+(13)	Remove the configuration directory.
+(14)	Inform user the location of the encrypted locked file.
+
+
+
+
+CRYPTOGRAPHY POLICIES
+
+Use the following command to read the program's cryptography policies:
+
+	$ chewkeanho-netcontrol help cryptography

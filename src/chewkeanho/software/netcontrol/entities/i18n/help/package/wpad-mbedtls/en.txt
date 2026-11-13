@@ -1,0 +1,143 @@
+# Copyright 2026 The (Holloway) Chew, Kean Ho's NetControl Project Team (https://github.com/ChewKeanHo/software-netcontrol)
+#
+# The above unified aliases have one or more actual legal entities listed
+# outside of this document: (1) 'CREATORS.txt' or 'AUTHORS.txt'; and (2)
+# 'CONTRIBUTORS.txt'. They are usually placed next to this document in their
+# respective project repository. Please refer to them for compiling the complete
+# list accordingly.
+#
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+# list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation
+# and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its contributors
+# may be used to endorse or promote products derived from this software without
+# specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+___________________________________________________________________________
+
+$ chewkeanho-netcontrol add wpad-mbedtls [PROFILE_NAME] [REMOTE_IP]
+$ chewkeanho-netcontrol remove wpad-mbedtls [PROFILE_NAME] [REMOTE_IP]
+___________________________________________________________________________
+
+FULL WPAD-MBEDTLS PACKAGE
+
+WPAD-MBEDTLS drives and handles wireless operations on a given node device.
+By default, OpenWRT ships a trimmed-down basic version to optimize for
+size and demand. However, the basic version lacks various important
+components, including but not limited to:
+
+1. Enterprise Wireless Encryption
+2. 802.11s Mesh Networking
+
+Therefore, if any of the above features is required, the full WPAD-MBEDTLS
+package is needed.
+
+Note that installing or removing this package will trigger an update of the
+'etc/openwrt/config/[PROFILE_NAME]/wireless' configuration file. Therefore,
+you MUST update the configuration to the intended version before running
+the installation or removal command.
+
+
+
+
+<<< !!! CAUTION !!! >>>
+
+1.	Dealing with radio frequencies requires compliance with local laws
+	and regulations.
+2.	Responsibility for any violation of local laws and regulations caused
+	by misconfiguration rests solely with you, the user; you must do the
+	necessary research and contact your local regulatory body before
+	production use.
+3.	To check compliance, you can use the following command to query your
+	local regulatory settings:
+		$ iw reg get
+	Example output:
+global
+country MY: DFS-FCC
+(2400 - 2500 @ 40), (N/A, 26), (N/A)
+(5150 - 5250 @ 80), (N/A, 30), (N/A), NO-OUTDOOR, AUTO-BW
+(5250 - 5350 @ 80), (N/A, 23), (0 ms), NO-OUTDOOR, DFS, AUTO-BW
+(5470 - 5650 @ 160), (N/A, 23), (0 ms), DFS
+(5725 - 5875 @ 80), (N/A, 30), (N/A)
+(5925 - 6425 @ 320), (N/A, 23), (N/A), NO-OUTDOOR
+
+
+
+
+WHAT THIS APP DOES
+
+In OpenWRT, this function first updates the '/etc/config/wireless' UCI
+file from the local 'etc/openwrt/config/[PROFILE_NAME]/wireless' via
+classic SCP file transfer.
+
+It only adds or removes the 'WPAD-MBEDTLS' package and its
+'WPAD-BASIC-MBEDTLS' package counterpart.
+
+Lastly, it restarts the 'wpad' service as a safety measure.
+
+
+
+
+WHAT IS REQUIRED FROM MAINTAINERS
+
+In OpenWRT, the UCI configuration file MUST be updated and available at:
+	${CHEWKEANHO_DIRECTORY_PROJECT}/etc/openwrt/config/wireless
+
+This configuration file can be constructed or referenced via:
+	* 'share/openwrt/config/example/wireless'
+	* 'share/openwrt/config/example/wireless-minimal-mesh'
+	* 'share/openwrt/config/example/wireless-minimal-repeater'
+	* 'share/openwrt/config/example/wireless-minimal-leaf'
+	* 'share/openwrt/config/example/wireless-sample-ap-consumer'
+	* 'share/openwrt/config/example/wireless-sample-ap-enterprise'
+	* 'share/openwrt/config/example/wireless-sample-mesh'
+	* 'share/openwrt/config/example/wireless-sample-radio-*'
+	* 'share/openwrt/config/example/wireless-sample-wifiwan-consumer'
+	* 'share/openwrt/config/example/wireless-sample-wifiwan-enterprise'
+
+
+
+
+USEFUL DEBUGGING COMMANDS
+
+To debug wireless features, you can use the following commands:
+
+```
+# debug the Internet connection via ICMP
+$ ping 1.1.1.1
+
+
+# debug DNS resolution
+$ nslookup openwrt.org
+
+
+# list all wireless devices' capabilities for this node
+$ iw list
+
+
+# list all wireless devices' supported radio modes
+$ iw list | grep -A9 'Supported interface modes'
+
+
+# get the local regulatory compliance settings
+$ iw reg get
+```
