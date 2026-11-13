@@ -348,7 +348,7 @@ DOI: 10.5281/zenodo.24191019
 License: BSD 3-Clause "New" or "Revised" License (https://opensource.org/license/BSD-3-clause)
 Repository Made On: 2026-10-05
 Repository Made From: Malaysia, South East Asia
-Procure: https://github.com/ChewKeanHo/software-netcontrol
+Procure: https://codeberg.org/chewkeanho/software-netcontrol
 ```
 
 
